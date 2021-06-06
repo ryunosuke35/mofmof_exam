@@ -1,0 +1,15 @@
+current directory: /Users/ryu/workspace/mofmof_exam/vendor/bundle/ruby/2.6.0/gems/debug_inspector-1.1.0/ext/debug_inspector
+/Users/ryu/.rbenv/versions/2.6.3/bin/ruby -I /Users/ryu/.rbenv/versions/2.6.3/lib/ruby/2.6.0 -r ./siteconf20210606-22756-haxtcn.rb extconf.rb
+creating Makefile
+
+current directory: /Users/ryu/workspace/mofmof_exam/vendor/bundle/ruby/2.6.0/gems/debug_inspector-1.1.0/ext/debug_inspector
+make "DESTDIR=" clean
+
+current directory: /Users/ryu/workspace/mofmof_exam/vendor/bundle/ruby/2.6.0/gems/debug_inspector-1.1.0/ext/debug_inspector
+make "DESTDIR="
+compiling debug_inspector.c
+linking shared-object debug_inspector.bundle
+
+current directory: /Users/ryu/workspace/mofmof_exam/vendor/bundle/ruby/2.6.0/gems/debug_inspector-1.1.0/ext/debug_inspector
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 debug_inspector.bundle ./.gem.20210606-22756-qxg5x5
