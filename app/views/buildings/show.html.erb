@@ -1,4 +1,22 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_building_path(@building) %> |
-<%= link_to 'Back', buildings_path %>
+<table class="show_table">
+  <tr>
+    <th>物件名:</th><td><%= @building.name%></td>
+  </tr>
+  <tr>
+    <th>賃料:</th><td><%= @building.rent%></td>
+  </tr>
+  <tr>
+    <th>住所:</th><td><%= @building.address%></td>
+  </tr>
+  <tr>
+    <th>築年数:</th><td><%= @building.age_of_building%></td>
+  </tr>
+  <tr>
+    <th>備考:</th><td><%= @building.note%></td>
+  </tr>
+</table>
+
+<%= link_to '編集', edit_building_path(@building) %> |
+<%= link_to '戻る', buildings_path %>
