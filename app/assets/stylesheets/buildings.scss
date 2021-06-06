@@ -4,6 +4,26 @@
 
 
 .show_table {
-border-collapse: separate;
-border-spacing: 20px 20px;
+  border-collapse: separate;
+  border-spacing: 20px 20px;
+  border: 1px solid;
+  border-right: transparent;
+  border-left: transparent;
+  border-top: transparent;
+
+
+}
+
+.building_input {
+  border: 1px solid;
+  border-right: transparent;
+  border-left: transparent;
+  border-top: transparent;
+}
+
+input {
+  margin-bottom: 10px;
+}
+textarea {
+  margin-bottom: 10px;
 }

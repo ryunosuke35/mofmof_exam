@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <div class="actions">
+  <div class="building_input">
     <%= form.label :物件名%>
     <%= form.text_field :name%><br>
     <%= form.label :賃料%>
@@ -22,6 +22,20 @@
     <%= form.text_field :age_of_building%>年<br>
     <%= form.label :備考%>
     <%= form.text_area :note%><br>
+  </div>
+
+  <div class="station_input">
+    <% i = 3 %>
+    <% 1.upto(i) do |time| %>
+    <h3>最寄り駅<%= time %></h3>
+      <%= form.label :路線名%>
+      <%= form.text_field :route_name%><br>
+      <%= form.label :駅名%>
+      <%= form.text_field :station_name%><br>
+      <%= form.label :徒歩分数%>
+      <%= form.text_field :minutes_of_foot%>分<br>
+    <% end %>
     <%= form.submit "登録する"%>
   </div>
+
 <% end %>

@@ -16,7 +16,23 @@
   <tr>
     <th>備考:</th><td><%= @building.note%></td>
   </tr>
+ </table>
+
+<!-- コメントアウトのためのif false -->
+<% if false %>
+<table>
+  <tr>
+    <th>路線名:</th><td><%= @station.route_name%></td>
+  </tr>
+  <tr>
+    <th>駅名:</th><td><%= @station.station_name%></td>
+  </tr>
+  <tr>
+    <th>徒歩分数:</th><td><%= @station.minutes_of_foot%></td>
+  </tr>
 </table>
+<% end %>
+<!-- コメントアウトのための end -->
 
 <%= link_to '編集', edit_building_path(@building) %> |
 <%= link_to '戻る', buildings_path %>
