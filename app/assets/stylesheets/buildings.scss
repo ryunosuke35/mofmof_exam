@@ -1,3 +1,29 @@
 // Place all the styles related to the buildings controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.show_table {
+  border-collapse: separate;
+  border-spacing: 20px 20px;
+  border: 1px solid;
+  border-right: transparent;
+  border-left: transparent;
+  border-top: transparent;
+
+
+}
+
+.building_input {
+  border: 1px solid;
+  border-right: transparent;
+  border-left: transparent;
+  border-top: transparent;
+}
+
+input {
+  margin-bottom: 10px;
+}
+textarea {
+  margin-bottom: 10px;
+}

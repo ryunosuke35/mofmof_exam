@@ -1,17 +1,47 @@
-<%= form_with(model: building, local: true) do |form| %>
-  <% if building.errors.any? %>
+<%= form_with(model: @building, local: true ) do |form| %>
+  <% if @building.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(building.errors.count, "error") %> prohibited this building from being saved:</h2>
-
+      <h2><%= t("errors.template.header", model: Building.model_name.human, count: @building.errors.count) %></h2>
       <ul>
-      <% building.errors.full_messages.each do |message| %>
+      <% @building.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= form.label :物件名 %>
+  <%= form.text_field :name%><br>
+  <%= form.label :賃料%>
+  <%= form.text_field :rent%>円<br>
+  <%= form.label :住所%>
+  <%= form.text_field :address%><br>
+  <%= form.label :築年数%>
+  <%= form.text_field :age_of_building%>年<br>
+  <%= form.label :備考%>
+  <%= form.text_area :note%><br>
+
+  <hr>
+  <% if action_name == 'edit'%>
+    <% if @stations.empty? %>
+      <h2>最寄駅は設定されていません。</h2><br>
+    <% else %>
+      <h2>最寄駅の数：<%= @stations.ids.count%>駅</h2><br>
+    <% end %>
+  <% end %>
+
+  <%= form.fields_for :stations do |station| %><br>
+    <h3>
+      最寄駅
+      <%= station.index + 1 %>
+    </h3>
+    <%= station.label :路線名 %>
+    <%= station.text_field :route_name %><br>
+    <%= station.label :駅名 %>
+    <%= station.text_field :station_name %><br>
+    <%= station.label :徒歩分数 %>
+    <%= station.text_field :minutes_of_foot %>分<br>
+  <% end %>
+
+  <%= form.submit "登録する"%>
 <% end %>

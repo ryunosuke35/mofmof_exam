@@ -1,4 +1,48 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_building_path(@building) %> |
-<%= link_to 'Back', buildings_path %>
+<table class="show_table">
+  <tr>
+    <th>物件名:</th><td><%= @building.name%></td>
+  </tr>
+  <tr>
+    <th>賃料:</th><td><%= @building.rent%></td>
+  </tr>
+  <tr>
+    <th>住所:</th><td><%= @building.address%></td>
+  </tr>
+  <tr>
+    <th>築年数:</th><td><%= @building.age_of_building%></td>
+  </tr>
+  <tr>
+    <th>備考:</th><td><%= @building.note%></td>
+  </tr>
+</table>
+
+
+ <% if @stations.empty? %>
+   <h2>最寄駅は設定されていません。</h2><br>
+<% else %>
+  <h2>最寄駅の数：<%= @stations.ids.count%>駅</h2><br>
+<% end %>
+
+<% if @stations.present? %>
+  <% @stations.each_with_index do |station, i| %>
+    <h4>
+      最寄り駅<%= i + 1 %>
+    </h4>
+    <table>
+      <tr>
+        <th>路線名:</th><td><%= station.route_name%></td>
+      </tr>
+      <tr>
+        <th>駅名:</th><td><%= station.station_name%></td>
+      </tr>
+      <tr>
+        <th>徒歩分数:</th><td><%= station.minutes_of_foot%></td>
+      </tr>
+    </table>
+  <% end %>
+<% end %>
+
+<%= link_to '編集', edit_building_path(@building) %> |
+<%= link_to '戻る', buildings_path %>

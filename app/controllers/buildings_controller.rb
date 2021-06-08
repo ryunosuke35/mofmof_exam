@@ -1,6 +1,6 @@
 class BuildingsController < ApplicationController
-  before_action :set_building, only: %i[ show edit update destroy ]
-
+  before_action :set_building, only: [ :show, :edit, :update, :destroy ]
+  before_action :set_stations, only: [ :show, :edit, :update ]
   # GET /buildings or /buildings.json
   def index
     @buildings = Building.all
@@ -13,48 +13,40 @@ class BuildingsController < ApplicationController
   # GET /buildings/new
   def new
     @building = Building.new
+    2.times { @building.stations.build }
   end
 
   # GET /buildings/1/edit
   def edit
+    @building.stations.build
+    # @building.stations
   end
 
   # POST /buildings or /buildings.json
   def create
     @building = Building.new(building_params)
-
-    respond_to do |format|
       if @building.save
-        format.html { redirect_to @building, notice: "Building was successfully created." }
-        format.json { render :show, status: :created, location: @building }
+        redirect_to @building, notice: "Building was successfully created."
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @building.errors, status: :unprocessable_entity }
+        render :new, status: :unprocessable_entity
       end
     end
-  end
 
   # PATCH/PUT /buildings/1 or /buildings/1.json
   def update
-    respond_to do |format|
+    # @building = Building.find(params[:id])
       if @building.update(building_params)
-        format.html { redirect_to @building, notice: "Building was successfully updated." }
-        format.json { render :show, status: :ok, location: @building }
+        redirect_to @building, notice: "Building was successfully updated."
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @building.errors, status: :unprocessable_entity }
+        render :edit, status: :unprocessable_entity
       end
     end
-  end
 
   # DELETE /buildings/1 or /buildings/1.json
   def destroy
     @building.destroy
-    respond_to do |format|
-      format.html { redirect_to buildings_url, notice: "Building was successfully destroyed." }
-      format.json { head :no_content }
+      redirect_to buildings_url, notice: "Building was successfully destroyed."
     end
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -62,8 +54,14 @@ class BuildingsController < ApplicationController
       @building = Building.find(params[:id])
     end
 
+    def set_stations
+      @stations = @building.stations
+    end
+
     # Only allow a list of trusted parameters through.
     def building_params
-      params.fetch(:building, {})
+      params.require(:building).permit(:name, :rent, :address, :age_of_building, :note,
+      stations_attributes: [:id, :route_name, :station_name, :minutes_of_foot])
     end
+
 end
