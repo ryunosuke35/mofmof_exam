@@ -24,7 +24,11 @@
   <hr>
 
   <% if action_name == 'edit'%>
-    <h2>最寄駅の数：<%= @stations.ids.count%>駅</h2><br>
+    <% if @stations.empty? %>
+      <h2>最寄駅は設定されていません。</h2><br>
+    <% else %>
+      <h2>最寄駅の数：<%= @stations.ids.count%>駅</h2><br>
+    <% end %>
   <% end %>
 
   <%= form.fields_for :stations do |station| %><br>

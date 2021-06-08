@@ -5,5 +5,5 @@ class Building < ApplicationRecord
   validates :age_of_building, numericality: { only_integer: true }
 
   has_many :stations, dependent: :destroy
-  accepts_nested_attributes_for :stations
+  accepts_nested_attributes_for :stations, reject_if: :all_blank
   end
