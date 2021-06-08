@@ -1,41 +1,44 @@
-<%= form_with(model: building, local: true) do |form| %>
-  <% if building.errors.any? %>
+<%= form_with(model: @building, local: true ) do |form| %>
+  <% if @building.errors.any? %>
     <div id="error_explanation">
-      <h2><%= t("errors.template.header", model: Building.model_name.human, count: building.errors.count) %></h2>
-
+      <h2><%= t("errors.template.header", model: Building.model_name.human, count: @building.errors.count) %></h2>
       <ul>
-      <% building.errors.full_messages.each do |message| %>
+      <% @building.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="building_input">
-    <%= form.label :物件名%>
-    <%= form.text_field :name%><br>
-    <%= form.label :賃料%>
-    <%= form.text_field :rent%>円<br>
-    <%= form.label :住所%>
-    <%= form.text_field :address%><br>
-    <%= form.label :築年数%>
-    <%= form.text_field :age_of_building%>年<br>
-    <%= form.label :備考%>
-    <%= form.text_area :note%><br>
-  </div>
+  <%= form.label :物件名 %>
+  <%= form.text_field :name%><br>
+  <%= form.label :賃料%>
+  <%= form.text_field :rent%>円<br>
+  <%= form.label :住所%>
+  <%= form.text_field :address%><br>
+  <%= form.label :築年数%>
+  <%= form.text_field :age_of_building%>年<br>
+  <%= form.label :備考%>
+  <%= form.text_area :note%><br>
 
-  <div class="station_input">
-    <% i = 3 %>
-    <% 1.upto(i) do |time| %>
-    <h3>最寄り駅<%= time %></h3>
-      <%= form.label :路線名%>
-      <%= form.text_field :route_name%><br>
-      <%= form.label :駅名%>
-      <%= form.text_field :station_name%><br>
-      <%= form.label :徒歩分数%>
-      <%= form.text_field :minutes_of_foot%>分<br>
-    <% end %>
-    <%= form.submit "登録する"%>
-  </div>
+  <hr>
 
+  <% if action_name == 'edit'%>
+    <h2>最寄駅の数：<%= @stations.ids.count%>駅</h2><br>
+  <% end %>
+
+  <%= form.fields_for :stations do |station| %><br>
+    <h3>
+      最寄駅
+      <%= station.index + 1 %>
+    </h3>
+    <%= station.label :路線名 %>
+    <%= station.text_field :route_name %><br>
+    <%= station.label :駅名 %>
+    <%= station.text_field :station_name %><br>
+    <%= station.label :徒歩分数 %>
+    <%= station.text_field :minutes_of_foot %>分<br>
+  <% end %>
+
+  <%= form.submit "登録する"%>
 <% end %>

@@ -1,4 +1,3 @@
 class Station < ApplicationRecord
-  belongs_to :building
-  
+    belongs_to :building
 end

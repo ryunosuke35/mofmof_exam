@@ -4,6 +4,6 @@ class Building < ApplicationRecord
   validates :address, presence: true, length: { maximum: 100 }
   validates :age_of_building, numericality: { only_integer: true }
 
-  has_many :stations
+  has_many :stations, dependent: :destroy
   accepts_nested_attributes_for :stations
   end
