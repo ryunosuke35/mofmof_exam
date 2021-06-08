@@ -18,6 +18,7 @@ class BuildingsController < ApplicationController
 
   # GET /buildings/1/edit
   def edit
+    @building.stations.build
     # @building.stations
   end
 
